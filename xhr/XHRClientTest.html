@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8"/>
+  <title></title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mocha/2.2.5/mocha.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/2.2.5/mocha.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/chai/3.0.0/chai.min.js"></script>
+</head>
+<body>
+
+<script>mocha.setup('bdd');</script>
+
+<div id="mocha"></div>
+
+<script src="../HTTPClient.js"></script>
+<script src="./XHRClient.js"></script>
+<script src="./XHRClientTest.js"></script>
+
+<script>
+  mocha.checkLeaks();
+  mocha.run();
+</script>
+</body>
+</html>
