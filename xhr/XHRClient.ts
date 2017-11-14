@@ -1,6 +1,16 @@
 ///<reference path="../HTTPClient.ts"/>
 
 class XHRClient implements HTTPClient {
+    private respType : XMLHttpRequestResponseType;
+
+    constructor(respType? : XMLHttpRequestResponseType) {
+        if (respType === undefined) {
+            this.respType = 'json';
+        } else {
+            this.respType = respType;
+        }
+    }
+
     send(method : Method, url : string, header : any, body : any) : Promise<HTTPResponse> {
         if (header == null) {
             throw 'header must not be null';
@@ -8,7 +18,7 @@ class XHRClient implements HTTPClient {
         return new Promise<HTTPResponse>((resolve : (HTTPResponse) => void, reject : (any) => void) => {
             var xhr = new XMLHttpRequest();
             xhr.open(this.toMethodStr(method), url, true);
-            xhr.responseType = 'json';
+            xhr.responseType = this.respType;
             for (var key in header) {
                 xhr.setRequestHeader(key, header[key]);
             }
